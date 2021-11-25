@@ -9,10 +9,10 @@ function MovieList(props) {
         <div>
             <Container>
                 <Row>
-                    {props.movies.map((movie,index)=>
+                    {props.movies.map((movie)=>
                         { return(
                     <Col >
-                        <MovieCard key={index} posterURL={movie.posterURL} title={movie.title} desc={movie.desc} year={movie.year}  rating={movie.rating}/>
+                        <MovieCard movie={movie}/>
                     </Col>
             )})}
                 </Row>
