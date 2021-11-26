@@ -1,9 +1,20 @@
-import React from "react";
+import React,{useState} from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import MovieCard from "./MovieCard";
+import MovieListHeading from "./MovieListHeading";
+import SearchRates from "./SearchRates";
+
 
 const Filter = (props) => {
+
+const [rate, setRate] = useState(1);
+
+const handleCallback=(childData)=>{
+  setRate(childData)
+}
+
   return (
+    <div>
     <div className="col col-sm-4">
       <input
         className="form-control"
@@ -11,21 +22,25 @@ const Filter = (props) => {
         onChange={(e) => props.setSearchValue(e.target.value)}
         placeholder="Type to search..."
       ></input>
-      <Container>
-        <Row>
-          {props.movies
-            .filter((movie) =>
+      <SearchRates parentCallback = {handleCallback}> {rate} </SearchRates>
+      </div>
+      <br/>
+            <MovieListHeading heading='Movies' />
+<Container>
+                <Row>
+          { props.movies
+            .filter((movie) => movie.rating>=rate ||
               movie.title
                 .toLowerCase()
                 .includes(props.searchValue.toLowerCase())
             )
             .map((movie) => (
-              <Col>
+            <Col >
                 <MovieCard movie={movie} />
-              </Col>
+            </Col>
             ))}
-        </Row>
-      </Container>
+            </Row>
+</Container>
     </div>
   );
 };

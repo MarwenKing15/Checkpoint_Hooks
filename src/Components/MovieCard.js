@@ -1,5 +1,6 @@
 import React from 'react'
 import {Card,Button} from 'react-bootstrap';
+import Rates from './Rates';
 
 
 
@@ -13,12 +14,12 @@ function MovieCard(props) {
                 <Card.Title>{props.movie.title}</Card.Title>
                 <Card.Text>{props.movie.desc}</Card.Text>
                 <Card.Text>{props.movie.year}</Card.Text>
-                <Card.Text></Card.Text>
-                
+                <Rates ratingValue={props.movie.rating} disabled/>
                 <Button variant="primary" className="buyingBtn">Check</Button>
               </Card.Body>
             </Card>
             <br/>
+            {/* <Rates rating={props.movie.rating}/> */}
         </div>
     )
 }

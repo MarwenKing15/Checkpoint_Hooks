@@ -1,37 +1,46 @@
-import { useState,useRef} from "react";
-import {Modal,Form,Button} from 'react-bootstrap'
-import MovieCard from "./MovieCard";
+import { useState} from "react";
+import {Modal,Form,Button,Card} from 'react-bootstrap'
+// import MovieCard from "./MovieCard";
 
 
-function Add() {
-
-// const movieName= useRef()
-// const movieURL= useRef()
-// const movieDesc= useRef()
-// const movieYear= useRef()
-// const movieRating= useRef()
-  
+function Add({movies,setMovies,movieName, setMovieName,movieURL, setMovieURL,movieYear, setMovieYear,movieDesc, setMovieDesc,movieRating, setMovieRating}) {
 
 
-var [movies, setMovies]=useState([])
-
+const [show, setShow] = useState(false);
+// const [movieName, setMovieName] = useState('');
+// const [movieURL, setMovieURL] = useState('');
+// const [movieDesc, setMovieDesc] = useState('');
+// const [movieYear, setMovieYear] = useState(0);
+// const [movieRating, setMovieRating] = useState(1);
 
 
 
-const handleAdd=(e)=>{
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-const movie={
-    title:e.movieName.value,
-    year:e.movieYear.value,
-    posterURL:e.moviePoster.value,
-    rating:e.movieRating.value,
-    desc:e.movieDesc.value}
 
-setMovies(() => ({
-  movie: [movie]
-}))
+// var [movies, setMovies]=useState([])
 
-// setMovies(movies.push(...movie))
+const handleName=(a)=>{setMovieName(a.target.value)};
+const handleURL=(b)=>{setMovieURL(b.target.value)};
+const handleDesc=(c)=>{setMovieDesc(c.target.value)};
+const handleYear=(d)=>{setMovieYear(d.target.value)};
+const handleRating=(e)=>{setMovieRating(e.target.value)};
+
+
+
+
+const handleAdd=()=>{
+
+ const movie={movieName,movieURL,movieDesc,movieYear,movieRating}
+
+ console.log(movie);
+
+// setMovies(() => ({
+//   movies: [movies,movie]
+// }))
+
+setMovies(movies.push())
 }
 
 
@@ -70,30 +79,49 @@ setMovies(() => ({
           </Card.Body>
         </Card> */}
 
-        <Modal.Dialog>
-  <Modal.Header closeButton>
-    <Modal.Title>Modal title</Modal.Title>
-  </Modal.Header>
+      <>
+      <Button variant="primary" onClick={handleShow}>
+        Launch demo modal
+      </Button>
 
-  <Modal.Body>
-    <Form.Group className="mb-3" controlId="formBasicEmail">
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add a Movie</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Card style={{ width: '18rem' }}>
+          <Card.Body>
+            <Form>
                 <Form.Label>Movie's Name</Form.Label>
-                <Form.Control type="text" placeholder="Movie's Name" className='movieName' onChange={handleAdd}/>
-              </Form.Group>
+                <Form.Control type="text" placeholder="Movie's Name" value={movieName} onChange={handleName} />
 
-              <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Movie's Poster URL</Form.Label>
-                <Form.Control type="URL" placeholder="Movie's Poster URL" className='moviePoster' onChange={handleAdd}/>
-              </Form.Group>
-  </Modal.Body>
+                <Form.Control type="URL" placeholder="Movie's Poster URL" value={movieURL} onChange={handleURL} />
 
-  <Modal.Footer>
-    <Button variant="secondary">Close</Button>
-    <Button variant="primary">Save changes</Button>
-  </Modal.Footer>
-</Modal.Dialog>
+                <Form.Label>Year</Form.Label>
+                <Form.Control type="number" placeholder="Year" min="1900" value={movieYear} onChange={handleYear} />
 
-              <MovieCard movie={movies}/>
+                <Form.Label>Description</Form.Label>
+                <Form.Control as="textarea" rows={3} value={movieDesc} onChange={handleDesc} />
+
+                <Form.Label>Rating</Form.Label>
+                <Form.Control type="number" placeholder="Rating" max='5' step='1' value={movieRating} onChange={handleRating} />
+            </Form>
+          </Card.Body>
+        </Card> 
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Cancle
+          </Button>
+          <Button variant="primary" onClick={()=>{handleClose();handleAdd();}}>
+            Add
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    </>
+
+              {/* <MovieCard movie={movie}/> */}
 
       </div>
     )
