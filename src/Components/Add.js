@@ -21,10 +21,10 @@ const [show, setShow] = useState(false);
 
 // var [movies, setMovies]=useState([])
 
-const handleName=(a)=>{setMovieName(a.target.value)};
-const handleURL=(b)=>{setMovieURL(b.target.value)};
-const handleDesc=(c)=>{setMovieDesc(c.target.value)};
-const handleYear=(d)=>{setMovieYear(d.target.value)};
+const handleName=(e)=>{setMovieName(e.target.value)};
+const handleURL=(e)=>{setMovieURL(e.target.value)};
+const handleDesc=(e)=>{setMovieDesc(e.target.value)};
+const handleYear=(e)=>{setMovieYear(e.target.value)};
 const handleRating=(e)=>{setMovieRating(e.target.value)};
 
 
@@ -37,7 +37,7 @@ const handleAdd=()=>{
  console.log(movie);
 
 // setMovies(() => ({
-//   movies: [movies,movie]
+//   newMovies: [...movies,movie]
 // }))
 
 setMovies(movies.push())
