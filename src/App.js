@@ -120,7 +120,7 @@ return (
       
 
 <br/>
-<FontAwesomeIcon icon={faPlusCircle} size="8x" color="white" onClick={handleShow}/>
+<a href="#addMovie"><FontAwesomeIcon icon={faPlusCircle} size="8x" color="white" onClick={handleShow}/></a>
 
 
 <div>
