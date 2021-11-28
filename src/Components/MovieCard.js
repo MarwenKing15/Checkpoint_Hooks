@@ -1,6 +1,9 @@
-import React from 'react'
-import {Card,Button} from 'react-bootstrap';
+import React from 'react';
+
+import {Card} from 'react-bootstrap';
 import Rating from '@mui/material/Rating';
+
+import './Styles/MovieCard.css';
 
 
 
@@ -8,21 +11,20 @@ import Rating from '@mui/material/Rating';
 
 function MovieCard(props) {
     return (
-        <div>
-           
-            <Card style={{ width: '20rem' }}>
-              <Card.Img variant="top" src={props.movie.posterURL}/>
-              <Card.Body>
-                <Card.Title>{props.movie.title}</Card.Title>
-                <Card.Text>{props.movie.desc}</Card.Text>
-                <Card.Text>{props.movie.year}</Card.Text>
-                <Rating name="read-only" value={props.movie.rating} readOnly />
-                <br/>
-                <Button variant="primary" className="buyingBtn">Check</Button>
+        <div className="cont">
+		<div class="main-container">
+              <img src={props.movie.posterURL} alt="movie poster" className="poster" width="320px"/>
+              <Card.Body className="info-container">
+                <Card.Title className="crd__title">{props.movie.title}</Card.Title>
+                <Card.Text className="cardDesc">{props.movie.desc}</Card.Text>
+                <Card.Text className="cardDesc">{props.movie.year}</Card.Text>
+                <Rating name="read-only" value={props.movie.rating} readOnly className="cardDesc"/>
+                <br/>                
               </Card.Body>
-            </Card>
+            </div>
             <br/>
         </div>
+
     )
 }
 

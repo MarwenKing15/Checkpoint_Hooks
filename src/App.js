@@ -1,17 +1,15 @@
 import { useState} from "react";
 import { Modal,Button,Form,Card } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlusCircle} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlusCircle} from '@fortawesome/free-solid-svg-icons';
 
 import './App.css';
-import Filter from './Components/Filter'
-// import Add from "./Components/Add";
 
+import Filter from './Components/Filter';
+import Footer from "./Components/Footer";
 
-function App() {
-var [movies, setMovies]=useState([
-    {
-      posterURL:'https://m.media-amazon.com/images/M/MV5BNzVlY2MwMjktM2E4OS00Y2Y3LWE3ZjctYzhkZGM3YzA1ZWM2XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg',
+const intiMovies=[{
+      posterURL:'https://vistapointe.net/images/star-wars-episode-iv-a-new-hope-2.jpg',
       title:'Star Wars: Episode IV - A New Hope',
       year:'1977',
       rating: 3,
@@ -19,14 +17,14 @@ var [movies, setMovies]=useState([
     },
 
     {    
-      posterURL:'https://m.media-amazon.com/images/M/MV5BYmU1NDRjNDgtMzhiMi00NjZmLTg5NGItZDNiZjU5NTU4OTE0XkEyXkFqcGdeQXVyNzkwMjQ5NzM@._V1_SX300.jpg',
+      posterURL:'https://i.pinimg.com/originals/f9/61/68/f96168f87134e8cc188e1482fc110339.jpg',
 			title: 'Star Wars: Episode V - The Empire Strikes Back',
 			year: '1980',
 			rating: 4,
 			desc: 'Good Movie',
 		},
 		{			
-      posterURL:'https://m.media-amazon.com/images/M/MV5BOWZlMjFiYzgtMTUzNC00Y2IzLTk1NTMtZmNhMTczNTk0ODk1XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_SX300.jpg',
+      posterURL:'https://vistapointe.net/images/star-wars-episode-vi-return-of-the-jedi--1.jpg',
 			title: 'Star Wars: Episode VI - Return of the Jedi',
 			year: '1983',
 			rating: 4,
@@ -40,41 +38,44 @@ var [movies, setMovies]=useState([
       desc:'Netflix Movie'
   },
   {
-      posterURL:"https://image.tmdb.org/t/p/w220_and_h330_face/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+      posterURL:"https://i.pinimg.com/originals/d6/57/a4/d657a48442d85023b6960c1cd1e0464e.jpg",
       title:'The Dark Knight',
       year:'2008',
       rating: 5,
       desc:'Best Movie Everr!!'
   },
   {
-      posterURL:"https://image.tmdb.org/t/p/w220_and_h330_face/pRn3TJHbAqCAO6U8Dw5DayVUuX3.jpg",
+      posterURL:"https://vistapointe.net/images/gladiator-wallpaper-4.jpg",
       title:'Gladiator',
       year:'2000',
       rating: 4,
       desc:'Iconic!!'
   },
   {
-      posterURL:"https://image.tmdb.org/t/p/w220_and_h330_face/or06FN3Dka5tukK1e9sl16pB3iy.jpg",
+      posterURL:"https://m.media-amazon.com/images/M/MV5BMTc5MDE2ODcwNV5BMl5BanBnXkFtZTgwMzI2NzQ2NzM@._V1_.jpg",
       title:'Avengers: Endgame',
       year:'2019',
       rating: 5,
     desc:'One of the best movies of the MCU'
   },
   { 
-      posterURL:"https://randommer.io/images/movies/23483.webp",
+      posterURL:"https://movieposters2.com/images/669813-b.jpg",
       title:'Kick-Ass',
       year:'2010',
       rating: 2,
       desc:'Mehhhh'
   },
   {
-      posterURL:"https://image.tmdb.org/t/p/w220_and_h330_face/g5pxxYlRJU7bG6ijgDbewXonmSY.jpg",
+      posterURL:"https://m.media-amazon.com/images/I/71ql8kIrPKL._AC_SL1338_.jpg",
       title:'The Fast and the Furious: Tokyo Drift',
       year:'2006',
       rating: 4,
       desc:'Best Racing Movie Ever!!!'
-  },
-])
+  }];
+
+
+function App() {
+var [movies, setMovies]=useState(intiMovies)
 
 
 const [show, setShow] = useState(false);
@@ -84,83 +85,43 @@ const handleClose = () => setShow(false);
 
 
 const [searchValue, setSearchValue] = useState('');
-const [movieName, setMovieName] = useState('');
-const [movieURL, setMovieURL] = useState('');
-const [movieDesc, setMovieDesc] = useState('');
-const [movieYear, setMovieYear] = useState(0);
-const [movieRating, setMovieRating] = useState(1);
+const [title, setTitle] = useState('');
+const [posterURL, setPosterURL] = useState('');
+const [desc, setDesc] = useState('');
+const [year, setYear] = useState(1990);
+const [rating, setRating] = useState(1);
 
-const handleName=(e)=>{setMovieName(e.target.value)};
-const handleURL=(e)=>{setMovieURL(e.target.value)};
-const handleDesc=(e)=>{setMovieDesc(e.target.value)};
-const handleYear=(e)=>{setMovieYear(e.target.value)};
-const handleRating=(e)=>{setMovieRating(e.target.value)};
+const handleName=(e)=>{setTitle(e.target.value)};
+const handleURL=(e)=>{setPosterURL(e.target.value)};
+const handleDesc=(e)=>{setDesc(e.target.value)};
+const handleYear=(e)=>{setYear(e.target.value)};
+const handleRating=(e)=>{setRating(e.target.value)};
 
 const handleAdd=()=>{
 
- const movie={movieName,movieURL,movieDesc,movieYear,movieRating}
+ const movie={posterURL,title,year,rating,desc}
 
  console.log(movie);
 
-setMovies(() => ({
-  newMovies: [...movies,movie]
-}))
+  const newMovies= [...movies, movie]
+  console.log(newMovies);
 
-// setMovies(movies.push())
+
+setMovies(newMovies)
 }
 
 
 
 
-
-// const movieName= useRef()
-// const movieURL= useRef()
-// const movieDesc= useRef()
-// const movieYear= useRef()
-// const movieRating= useRef()
-
-
-
-
-// const add=(e)=>{
-//   const movie={
-//     title:movieName.current.value,
-//     year:movieYear.current.value,
-//     posterURL:movieURL.current.value,
-//     rating:movieRating.current.value,
-//     desc:movieDesc.current.value}
-
-
-//     console.log(movie)
-
-// setMovies(() => ({
-//   movies: movies=[...movies, movie]
-// }))
-
-
-//  }
-
- 
-
-
 return (
     <div className="App">
-      <div className='row d-flex align-items-center mt-4 mb-4'>
-      <div className='row'>
+      
         <Filter searchValue={searchValue} setSearchValue={setSearchValue} movies={movies}/>
-      </div>
-    </div>
       
 
- {/* <Add movies={movies} setMovies={setMovies}
-  movieName={movieName} setMovieName={setMovieName}
-  movieURL={movieURL} setMovieURL={setMovieURL}
-  movieYear={movieYear} setMovieYear={setMovieYear}
-  movieDesc={movieDesc} setMovieDesc={setMovieDesc}
-  movieRating={movieRating} setMovieRating={setMovieRating}
- /> */}
+<br/>
+<FontAwesomeIcon icon={faPlusCircle} size="8x" color="white" onClick={handleShow}/>
 
-<FontAwesomeIcon icon={faPlusCircle} size="6x" onClick={handleShow}/>
 
 <div>
 <Modal show={show} onHide={handleClose}>
@@ -172,19 +133,19 @@ return (
           <Card.Body>
             <Form>
                 <Form.Label>Movie's Name</Form.Label>
-                <Form.Control type="text" placeholder="Movie's Name" value={movieName} onChange={handleName} />
+                <Form.Control type="text" placeholder="Movie's Name" value={title} onChange={handleName} />
 
                 <Form.Label>Movie's Poster URL</Form.Label>
-                <Form.Control type="URL" placeholder="Movie's Poster URL" value={movieURL} onChange={handleURL} />
+                <Form.Control type="URL" placeholder="Movie's Poster URL" value={posterURL} onChange={handleURL} />
 
                 <Form.Label>Year</Form.Label>
-                <Form.Control type="number" placeholder="Year" min="1900" value={movieYear} onChange={handleYear} />
+                <Form.Control type="number" placeholder="Year" min="1900" value={year} onChange={handleYear} />
 
                 <Form.Label>Description</Form.Label>
-                <Form.Control as="textarea" rows={3} value={movieDesc} onChange={handleDesc} />
+                <Form.Control as="textarea" rows={3} value={desc} onChange={handleDesc} />
 
                 <Form.Label>Rating</Form.Label>
-                <Form.Control type="number" placeholder="Rating" max='5' step='1' value={movieRating} onChange={handleRating} />
+                <Form.Control type="number" placeholder="Rating" max='5' step='1' value={rating} onChange={handleRating} />
             </Form>
           </Card.Body>
         </Card> 
@@ -198,6 +159,8 @@ return (
           </Button>
         </Modal.Footer>
       </Modal>
+
+      <Footer/>
 
 </div>
     </div>

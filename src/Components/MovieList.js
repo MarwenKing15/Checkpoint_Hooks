@@ -1,22 +1,36 @@
-import React from 'react'
+import React from 'react';
+
 import { Container, Row, Col } from 'react-bootstrap';
 import MovieCard from './MovieCard';
+import MovieListHeading from "./MovieListHeading";
 
-// import { Container, Row, Col } from 'react-bootstrap';
+import './Styles/MovieList.css';
 
-function MovieList(props) {
+
+
+function MovieList({movies,searchValue,value}) {
     return (
-        <div>
-            <Container>
+        <div className="body">
+            <br/>
+            <MovieListHeading heading='Movies'/>
+            <br/>
+<Container>
                 <Row>
-                    {props.movies.map((movie)=>
-                        { return(
-                    <Col >
-                        <MovieCard movie={movie}/>
-                    </Col>
-            )})}
-                </Row>
-            </Container>
+          { movies
+          .filter((movie) =>
+              movie.title
+                .toLowerCase()
+                .includes(searchValue.toLowerCase()) && movie.rating>=value
+            )
+            .map((movie) => (
+            <Col >
+                <MovieCard movie={movie} />
+            </Col>
+            ))
+            
+            }
+            </Row>
+</Container>
             
         </div>
     )
