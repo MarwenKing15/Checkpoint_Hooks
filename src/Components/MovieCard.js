@@ -11,7 +11,7 @@ function MovieCard(props) {
       <div class="main-container">
         <img
           src={props.movie.posterURL}
-          alt="movie poster"
+          alt={props.movie.title}
           className="poster image-container"
           width="320px"
         />

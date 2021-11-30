@@ -22,7 +22,7 @@ function MovieList({ movies, searchValue, value }) {
             )
             .map((movie) => (
               <Col>
-                <MovieCard movie={movie} />
+                <MovieCard key={movie.id} movie={movie} />
               </Col>
             ))}
         </Row>
