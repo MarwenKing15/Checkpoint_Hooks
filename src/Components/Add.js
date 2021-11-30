@@ -28,13 +28,12 @@ function Add({ movies, setMovies, setShow, show }) {
 
   const handleAdd = () => {
     const movie = { posterURL, title, year, rating, desc };
-
-    console.log(movie);
-
-    const newMovies = [...movies, movie];
-    console.log(newMovies);
-
-    setMovies(newMovies);
+    setMovies([...movies, movie]);
+    setTitle("");
+    setPosterURL("");
+    setDesc("");
+    setYear(1990);
+    setRating(1);
   };
 
   return (
